@@ -8,9 +8,12 @@ result = requests.get(url)
 doc = BeautifulSoup(result.text, "html.parser")
 
 items = doc.find_all("div", class_="item-container")
+count = 0
 for item in items:
+    count = count + 1
     name = item.find("a", class_="item-title").text.strip()
     price = item.find("li", class_="price-current").find("strong").text.strip()
     print("Name:", name)
     print("Price: $" + price)
     print()
+print("Number of cards available: "+ str(count))
